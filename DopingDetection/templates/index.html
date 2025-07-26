@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Doping Detection System</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+  <style>
+    body {
+      background: linear-gradient(135deg, #3797a4, #f0f4f8);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px;
+      background: #eceeff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #000000;
+    }
+
+    .intro-text {
+      text-align: center;
+      font-size: 2.0rem;
+      color: #000000;
+      margin-bottom: 30px;
+    }
+
+    .btn-primary {
+      background-color: #1d3557;
+      border: none;
+      font-weight: 600;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .btn-primary:hover {
+      background-color: #16324f;
+    }
+
+    .result {
+      background-color: #e9f5f3;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 5px solid #1d3557;
+    }
+
+    #doping-type-probs ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Smart Doping Detection System</h2>
+        <img src="https://media.istockphoto.com/id/859339256/photo/doping-in-sports-and-steroid-abuse-concept.jpg?s=612x612&w=0&k=20&c=ZNDRt__eDp9_LngZruUYFINQwDL75q8lJInfpBcbxr4=" 
+         alt="Anti-Doping Banner"   style="width: 100%; height: auto; padding: 20px; box-sizing: border-box; display: block; page-break-inside: avoid;" />
+
+        
+
+        <p class="intro-text">
+            Our system helps predict whether an athlete is doped or not based on sample collection details and other influencing factors. 
+            Enter the athlete's information to check if they are using prohibited substances.
+        </p>
+
+        <form id="prediction-form">
+            <!-- All form input fields remain exactly the same -->
+            <!-- START of Inputs -->
+            <div class="form-group">
+                <label for="age">Age (Integer):</label>
+                <input type="number" class="form-control" id="age" name="Age" required>
+            </div>
+            <div class="form-group">
+                <label for="biological_passport_anomaly">Biological Passport Anomaly (Integer):</label>
+                <input type="number" class="form-control" id="biological_passport_anomaly" name="Biological_Passport_Anomaly" required>
+            </div>
+            <div class="form-group">
+                <label for="travel_alerts">Travel Alerts (0 or 1):</label>
+                <input type="number" class="form-control" id="travel_alerts" name="Travel_Alerts" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="medical_record_flag">Medical Record Flag (0 or 1):</label>
+                <input type="number" class="form-control" id="medical_record_flag" name="Medical_Record_Flag" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="social_media_alerts">Social Media Alerts (0 or 1):</label>
+                <input type="number" class="form-control" id="social_media_alerts" name="Social_Media_Alerts" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="investigation_status">Investigation Status (0 or 1):</label>
+                <input type="number" class="form-control" id="investigation_status" name="Investigation_Status" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="whistleblower_report">Whistleblower Report (0 or 1):</label>
+                <input type="number" class="form-control" id="whistleblower_report" name="Whistleblower_Report" min="0" max="1" required>
+            </div>
+            <div class="form-group">
+                <label for="case_risk_score">Case Risk Score (Integer):</label>
+                <input type="number" class="form-control" id="case_risk_score" name="Case_Risk_Score" required>
+            </div>
+            <div class="form-group">
+                <label for="sanction_severity">Sanction Severity (Integer):</label>
+                <input type="number" class="form-control" id="sanction_severity" name="Sanction_Severity" required>
+            </div>
+            <div class="form-group">
+                <label for="test_frequency">Test Frequency (Integer):</label>
+                <input type="number" class="form-control" id="test_frequency" name="Test_Frequency" required>
+            </div>
+            <div class="form-group">
+                <label for="abnormal_hemoglobin">Abnormal Hemoglobin (Float):</label>
+                <input type="number" step="0.01" class="form-control" id="abnormal_hemoglobin" name="Abnormal_Hemoglobin" required>
+            </div>
+            <div class="form-group">
+                <label for="steroid_profile_deviation">Steroid Profile Deviation (Integer):</label>
+                <input type="number" class="form-control" id="steroid_profile_deviation" name="Steroid_Profile_Deviation" required>
+            </div>
+            <div class="form-group">
+                <label for="athlete_performance_change">Athlete Performance Change (Float):</label>
+                <input type="number" step="0.01" class="form-control" id="athlete_performance_change" name="Athlete_Performance_Change" required>
+            </div>
+            <div class="form-group">
+                <label for="training_location_flags">Training Location Flags (Integer):</label>
+                <input type="number" class="form-control" id="training_location_flags" name="Training_Location_Flags" required>
+            </div>
+            <div class="form-group">
+                <label for="medical_exemptions">Medical Exemptions (Integer):</label>
+                <input type="number" class="form-control" id="medical_exemptions" name="Medical_Exemptions" required>
+            </div>
+            <div class="form-group">
+                <label for="doping_association_score">Doping Association Score (Integer):</label>
+                <input type="number" class="form-control" id="doping_association_score" name="Doping_Association_Score" required>
+            </div>
+            <!-- END of Inputs -->
+
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+
+        <div id="prediction-result" class="result mt-4" style="display: none;">
+            <h4>Prediction Results</h4>
+            <p><strong>Doping Detected:</strong> <span id="doping-detected"></span></p>
+            <p><strong>Doping Probability:</strong> <span id="doping-probability"></span>%</p>
+            <p><strong>Doping Type:</strong> <span id="doping-type"></span></p>
+            <div id="doping-type-probs"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#prediction-form').submit(function(event) {
+                event.preventDefault();
+
+                // Prepare the form data to send
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    url: '/predict',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // Display prediction results
+                        $('#prediction-result').show();
+                        $('#doping-detected').text(response.doping_detected ? 'Yes' : 'No');
+                        $('#doping-probability').text(response.doping_probability.toFixed(2));
+
+                        if (response.doping_detected) {
+                            $('#doping-type').text(response.doping_type);
+                            var typeProbs = response.doping_type_probabilities;
+                            var probsHtml = '<ul>';
+                            for (var type in typeProbs) {
+                                probsHtml += `<li>${type}: ${typeProbs[type].toFixed(2)}%</li>`;
+                            }
+                            probsHtml += '</ul>';
+                            $('#doping-type-probs').html(probsHtml);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error: ' + error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
