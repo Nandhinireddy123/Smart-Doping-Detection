@@ -1,23 +1,6 @@
 # Smart-Doping-Detection
 Smart Doping Detection identifies whether an athlete has used performance-enhancing substances. If doping is detected, it further classifies the specific type of doping involved.
 
-## 📂 Folder Structure
-
-DopingDetection/
-├── app.py
-├── balanced\_anti\_doping\_dataset.csv
-├── doping\_model.py
-├── doping\_detection\_model.pkl
-├── doping\_type\_model.pkl
-├── models/
-│   ├── doping\_detection\_model.pkl
-│   ├── doping\_type\_model.pkl
-│   └── feature\_names.pkl
-├── templates/
-│   └── index.html
-├── pycache/
-│   └── doping\_model.cpython-312.pyc
-
 ## 🚀 Features
 
 - Predicts whether an athlete is doped or not.
